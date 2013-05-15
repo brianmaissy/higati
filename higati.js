@@ -50,7 +50,7 @@ function getPrimes(maxsieve){
     var count = 0;
     var result = [];
 
-    for (i = 1; i <= maxsieve; i++) {
+    for (i = 2; i <= maxsieve; i++) {
       sieve[i] = 1;
     }
     for (prime = 2; prime <= maxsieve; prime++) {
@@ -61,7 +61,7 @@ function getPrimes(maxsieve){
           }
         }
     }
-    for (i = 1; i <= maxsieve; i++) {
+    for (i = 2; i <= maxsieve; i++) {
       if(sieve[i] === 1) result.push(i);
     }
     return result;
