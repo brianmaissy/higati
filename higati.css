@@ -1,1 +1,6 @@
-/* CSS declarations go here */
+.arrived {
+  color: green;
+}
+.not-arrived {
+  color: red;
+}

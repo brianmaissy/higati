@@ -1,13 +1,45 @@
 <head>
-  <title>higati</title>
+    <title>Higati Habaita</title>
+    <meta name="viewport" content="width=300px">
 </head>
 
 <body>
-  {{> hello}}
+    <div class="container">
+        <h2>Higati Habaita:</h2>
+        {{> new_response }}
+        <br><br><br><br>
+        {{> responses }}
+        <br><br><br><br>
+        {{> reset }}
+      </div>
 </body>
 
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
+<template name="responses">
+    {{#each numbers}} 
+    {{> number }}
+    {{/each}}
 </template>
+
+<template name="number">
+    {{#if arrived}}
+    <span class="arrived">
+    {{else}}
+    <span class="not-arrived">
+    {{/if}}
+        {{number}}
+    </span>
+</template>
+
+<template name="new_response">
+    <select id="new-response-number">
+        {{#each numbers}}
+        <option value="{{number}}">{{ number }}</option>
+        {{/each}}
+    </select>
+    <input type="button" id="new-response-submit" value="Higati!">
+</template>
+
+<template name="reset">
+    <input type="button" id="reset" value="Clear responses">
+</template>
+
