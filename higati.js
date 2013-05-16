@@ -24,10 +24,10 @@ if (Meteor.isClient) {
       }
     },
     'click input#primes': function(event){
-      var primes = getPrimes(TOP_NUMBER);
-      for(var i=0; i<primes.length; i++){
-        var id = Numbers.findOne({number: primes[i]})._id;
-        Numbers.update({_id: id}, {$set: {arrived: true}});
+      var sieve = getSieve(TOP_NUMBER);
+      for(var i=1; i<=TOP_NUMBER; i++){
+        var id = Numbers.findOne({number: i})._id;
+        Numbers.update({_id: id}, {$set: {arrived: sieve[i]}});
       }
     }
   });
@@ -43,13 +43,13 @@ if (Meteor.isServer) {
   });
 }
 
-function getPrimes(maxsieve){
+function getSieve(maxsieve){
     var sieve = new Array();
     var i = 0;
     var prime = 0;
     var count = 0;
-    var result = [];
 
+    sieve[1] = 0;
     for (i = 2; i <= maxsieve; i++) {
       sieve[i] = 1;
     }
@@ -61,8 +61,5 @@ function getPrimes(maxsieve){
           }
         }
     }
-    for (i = 2; i <= maxsieve; i++) {
-      if(sieve[i] === 1) result.push(i);
-    }
-    return result;
+    return sieve;
 }
